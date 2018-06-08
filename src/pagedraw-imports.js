@@ -26,12 +26,11 @@ import {
     Button as BsButton,
     Image,
     ProgressBar,
-    Tooltip,
-    Glyphicon,
-    Jumbotron,
     Label,
     Well,
-    DropdownButton
+    DropdownButton,
+    FormControl,
+    ControlLabel
 } from 'react-bootstrap';
 
 const Enum = (options) => ({__ty: 'Enum', options});
@@ -43,7 +42,7 @@ const sizeTy = Enum(['small', 'medium', 'large']);
 
 // React bootstrap types
 const bsStyleTy = Enum(['success', 'warning', 'danger', 'info']);
-const bsSizeTy = Enum(["lg", "large", "sm", "small", "xs", "xsmall"])
+const bsSizeTy = Enum(["large", "small", "xsmall"])
 
 
 const expt = pagedrawSpecs([
@@ -132,8 +131,8 @@ const expt = pagedrawSpecs([
             {
                 name: 'AppBar',
                 tag: AppBar,
-                propTypes: {color: colorTy, disabled: 'Boolean', disableRipple: 'Boolean', checked: 'Boolean'},
-                resizable: [],
+                propTypes: {color: colorTy, position: Enum(['fixed', 'absolute', 'sticky', 'static']), children: 'Text'},
+                resizable: ['height', 'width'],
                 importPath: '@material-ui/core',
                 isDefaultExport: false
             }
@@ -167,25 +166,9 @@ const expt = pagedrawSpecs([
                 isDefaultExport: false
             },
             {
-                name: 'Tooltip',
-                tag: Tooltip,
-                propTypes: {id: 'Text', placement: Enum(['top', 'right', 'bottom', 'left']), onOpen: 'Function', onClose: 'Function', children: 'Text'},
-                resizable: ['height', 'width'],
-                importPath: 'react-bootstrap',
-                isDefaultExport: false
-            },
-            {
                 name: 'Badge',
                 tag: Badge,
-                propTypes: {pullRight: 'Boolean'},
-                resizable: ['height', 'width'],
-                importPath: 'react-bootstrap',
-                isDefaultExport: false
-            },
-            {
-                name: 'Glyphicon',
-                tag: Glyphicon,
-                propTypes: {glyph: 'Text'},
+                propTypes: {pullRight: 'Boolean', children: 'Text'},
                 resizable: ['height', 'width'],
                 importPath: 'react-bootstrap',
                 isDefaultExport: false
@@ -193,15 +176,7 @@ const expt = pagedrawSpecs([
             {
                 name: 'Image',
                 tag: Image,
-                propTypes: {thumbnail: 'Boolean', responsive: 'Boolean', rounded: 'Boolean', circle: 'Boolean'},
-                resizable: ['height', 'width'],
-                importPath: 'react-bootstrap',
-                isDefaultExport: false
-            },
-            {
-                name: 'Jumbotron',
-                tag: Jumbotron,
-                propTypes: {children: 'Text'},
+                propTypes: {thumbnail: 'Boolean', responsive: 'Boolean', rounded: 'Boolean', circle: 'Boolean', src: "Text"},
                 resizable: ['height', 'width'],
                 importPath: 'react-bootstrap',
                 isDefaultExport: false
@@ -226,6 +201,22 @@ const expt = pagedrawSpecs([
                 name: 'DropdownButton',
                 tag: DropdownButton,
                 propTypes: {bsStyle: bsStyleTy, bsSize: bsSizeTy, title: 'Text', noCaret: 'Boolean', children: 'Text'},
+                resizable: ['height', 'width'],
+                importPath: 'react-bootstrap',
+                isDefaultExport: false
+            },
+            {
+                name: 'FormControl',
+                tag: FormControl,
+                propTypes: {bsSize: bsSizeTy, type: 'Text', value: 'Text', placeholder: 'Text', onChange: 'Function'},
+                resizable: ['height', 'width'],
+                importPath: 'react-bootstrap',
+                isDefaultExport: false
+            },
+            {
+                name: 'ControlLabel',
+                tag: ControlLabel,
+                propTypes: {children: 'Text'},
                 resizable: ['height', 'width'],
                 importPath: 'react-bootstrap',
                 isDefaultExport: false
