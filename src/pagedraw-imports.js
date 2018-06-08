@@ -14,10 +14,12 @@ import {
     Input,
     LinearProgress,
     Select,
-    Radio
+    Radio,
+    AppBar
 } from '@material-ui/core';
 
 
+import bscss from './bootstrap-css'
 import {
     Alert,
     Badge,
@@ -42,6 +44,7 @@ const sizeTy = Enum(['small', 'medium', 'large']);
 // React bootstrap types
 const bsStyleTy = Enum(['success', 'warning', 'danger', 'info']);
 const bsSizeTy = Enum(["lg", "large", "sm", "small", "xs", "xsmall"])
+
 
 const expt = pagedrawSpecs([
     {
@@ -121,11 +124,19 @@ const expt = pagedrawSpecs([
             {
                 name: 'Radio',
                 tag: Radio,
-                propTypes: {color: colorTy, disabled: 'Boolean', disableRipple: 'Boolean', checked: 'Boolean', },
+                propTypes: {color: colorTy, disabled: 'Boolean', disableRipple: 'Boolean', checked: 'Boolean'},
                 resizable: [],
                 importPath: '@material-ui/core',
                 isDefaultExport: false
             },
+            {
+                name: 'AppBar',
+                tag: AppBar,
+                propTypes: {color: colorTy, disabled: 'Boolean', disableRipple: 'Boolean', checked: 'Boolean'},
+                resizable: [],
+                importPath: '@material-ui/core',
+                isDefaultExport: false
+            }
         ], 'name')
     },
     {
@@ -151,7 +162,7 @@ const expt = pagedrawSpecs([
                 name: 'ProgressBar',
                 tag: ProgressBar,
                 propTypes: {bsStyle: bsStyleTy, min: "Number", now: 'Number', max: "Number", active: "Boolean", striped: 'Boolean'},
-                resizable: ['height', 'width'],
+                resizable: ['width'],
                 importPath: 'react-bootstrap',
                 isDefaultExport: false
             },
@@ -191,7 +202,7 @@ const expt = pagedrawSpecs([
                 name: 'Jumbotron',
                 tag: Jumbotron,
                 propTypes: {children: 'Text'},
-                resizable: [],
+                resizable: ['height', 'width'],
                 importPath: 'react-bootstrap',
                 isDefaultExport: false
             },
@@ -207,7 +218,7 @@ const expt = pagedrawSpecs([
                 name: 'Well',
                 tag: Well,
                 propTypes: {bsSize: bsSizeTy, children: 'Text'},
-                resizable: [],
+                resizable: ['height', 'width'],
                 importPath: 'react-bootstrap',
                 isDefaultExport: false
             },
@@ -219,7 +230,7 @@ const expt = pagedrawSpecs([
                 importPath: 'react-bootstrap',
                 isDefaultExport: false
             }
-        ], 'name')
+        ], 'name').map((spec) => _.extend({}, spec, {includeCSS: [['bscss', bscss]]}))
     }
 ]);
 
